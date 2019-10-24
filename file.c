@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include "defs.h"
 #include "struct.h"
 
@@ -89,6 +90,10 @@ int make_proj_file(char *cwd, char *fname, Proj_files_t p) {
   }
 
   fprintf(fp, "%s", data);
+
+  if (strcmp(AUTOMAKE_SH_FILE, fname) == 0) {
+    chmod(proj_path, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+  }
 
   fclose(fp);
   free(data);
