@@ -18,15 +18,22 @@ int make_boiler(Proj_files_t p) {
    * insert preprocessor directive
    * inclusion protection in .h files
    */
-  char *working_dir = getcwd(NULL, 0);
+  char *working_dir = NULL;
+
+  working_dir = malloc_p(working_dir);
+  
+  strncpy(working_dir, getcwd(NULL, 0), LEN);
+  working_dir[strlen(working_dir)] = '\0';
+
   struct stat st = {0};
 
+  printf("current directory: %s\n", working_dir);
   printf("check if dir '%s' exists...", p.proj_name);
 
   if (stat(p.proj_name, &st) == -1) {
     printf("no\nCreating dir '%s'...\n", p.proj_name);
     mkdir(p.proj_name, 0755);
-  } else if (stat(p.proj_name, &st) != -1) {
+  } else {
     printf("yes\n");
   }
 
@@ -60,6 +67,7 @@ int make_boiler(Proj_files_t p) {
   free(p.proj_c);
   free(p.proj_h);
   free(p.readme);
+  free(working_dir);
 
   return 0;
 }

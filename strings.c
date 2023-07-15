@@ -10,7 +10,8 @@ char * get_string(char *str) {
 
 char * make_work_dir_str(char *cwd, char *work_dir) {
   cwd[strlen(cwd)] = '/';
-  strcat(cwd, work_dir);
+  strncat(cwd, work_dir, MAX_DIR_LEN);
   cwd[strlen(cwd)] = '/';
+//  cwd[strlen(cwd)] = '\0';
   return cwd;
 }

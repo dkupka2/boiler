@@ -5,11 +5,12 @@
 #define CONFIGURE_AC_FILE "configure.ac"
 #define AUTOMAKE_SH_DATA "#!/bin/sh\naclocal &&\nautoconf &&\nautomake --add-missing &&\n./configure &&\nmake\n# make dist &&\n# make distcheck &&\n# make install &&\nls"
 #define AUTOMAKE_SH_FILE "automake.sh"
-#define LEN 256
+#define LEN 1024
 #define MAIN_C_FILE "main.c"
 #define MAIN_C_DATA "#include <stdio.h>\n#include \"%s\"\n\nint main(int argc, char **argv) {\n\tprintf(\"test!\\n\");\n\treturn 0;\n}"
 #define MAKEFILE_AM_DATA "AUTOMAKE_OPTIONS = foreign\nbin_PROGRAMS = %s\n%s_SOURCES = %s %s"
 #define MAKEFILE_AM_FILE "Makefile.am"
+#define MAX_DIR_LEN 512
 #define PROJ_C_FILE "%s.c"
 #define PROJ_H_FILE "%s.h"
 #define PROJ_H_MACRO "%s_H"
